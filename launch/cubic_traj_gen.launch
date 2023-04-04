@@ -1,0 +1,17 @@
+<launch>
+
+  <!--launching the nodes-->
+  <group ns="ros_trajectory_planner_group">
+    <node pkg="ros_trajectory_planner" name="points_generator" type="points_generator.py"/>
+    <node pkg="ros_trajectory_planner" name="compute_cubic_coeffs" type="compute_cubic_coeffs.py"/>
+    <node pkg="ros_trajectory_planner" name="cubic_traj_planner" type="cubic_traj_planner.py"/>
+    <node pkg="ros_trajectory_planner" name="plot_cubic_traj" type="plot_cubic_traj.py"/>
+  </group>
+  
+  <!--launching rqt_plot to populate with the acceleration, position and velocity trajectories-->
+  <node pkg="rqt_plot" type="rqt_plot" name="plot" args="/acc_traj, /pos_traj, /vel_traj"/>
+  
+  <!--launching rqt_graph-->
+  <node pkg="rqt_graph" type="rqt_graph" name="ros_trajectory_planner_graph"/>
+  
+</launch>
